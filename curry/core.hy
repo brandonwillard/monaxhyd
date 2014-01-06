@@ -13,10 +13,10 @@
 (import [curry._tools :as t/])
 
 (defmacro monad [operations]
-  `(let [[~'m-bind   nil]
-         [~'m-result nil]
-         [~'m-zero   nil]
-         [~'m-plus   nil]
+  `(let [[~'m-bind   'undefined]
+         [~'m-result 'undefined]
+         [~'m-zero   'undefined]
+         [~'m-plus   'undefined]
          ~@operations]
      {'m-result  ~'m-result
       'm-bind    ~'m-bind
