@@ -13,7 +13,7 @@ doesn't do very much yet.
 Example
 -------
 
-```lisp
+```clojure
 (require curry.core)
 (import [curry [monads]])
 
