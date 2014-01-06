@@ -15,3 +15,13 @@
   [[m-result (fn [r] r)]
    [m-bind   (fn [mv f]
                (f mv))]])
+
+(defmonad maybe-m
+  [[m-zero   nil]
+   [m-result (fn [v] v)]
+   [m-bind   (fn [mv f]
+               (if (is mv nil)
+                 nil
+                 (f mv)))]
+   [m-plus   (fn [&rest mvs]
+               (first (drop-while (fn [x] (is x nil)) mvs)))]])

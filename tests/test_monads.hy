@@ -17,3 +17,31 @@
                                          [b (inc a)]]
                       (+ a b))
              3)))
+
+(defn test-monad-maybe []
+  (let [[call-state {}]
+        [ref (fn [n &rest r]
+               (setv (get call-state n) :called)
+               (if r (first r) n))]]
+    (setv call-state {})
+    (assert (= (domonad monads.maybe-m [[a (ref 1)]
+                                        [b (ref 2)]
+                                        [c (ref 3 nil)]
+                                        [d (ref 4)]]
+                        (+ a b c d))
+               nil))
+    (assert (= call-state {1 :called
+                           2 :called
+                           3 :called}))
+
+    (setv call-state {})
+    (assert (= (domonad monads.maybe-m [[a (ref 1)]
+                                        [b (ref 2)]
+                                        [c (ref 3)]
+                                        [d (ref 4)]]
+                        (+ a b c d))
+               10))
+    (assert (= call-state {1 :called
+                           2 :called
+                           3 :called
+                           4 :called}))))
