@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 ## monaxhyd -- Monads for Hy
 ## Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
 ## Heavily based on clojure.algo.monads by Konrad Hinsen and others.
