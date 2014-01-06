@@ -25,3 +25,10 @@
                  (f mv)))]
    [m-plus   (fn [&rest mvs]
                (first (drop-while (fn [x] (is x nil)) mvs)))]])
+
+(defmonad sequence-m
+  [[m-result (fn [v] [v])]
+   [m-bind   (fn [mv f]
+               (flatten (map f mv)))]
+   [m-zero   []]
+   [m-plus   (fn [&rest mvs] (flatten mvs))]])

@@ -45,3 +45,10 @@
                            2 :called
                            3 :called
                            4 :called}))))
+
+(defn test-monad-sequence []
+  (assert (= (domonad monads.sequence-m
+                      [[x (range 5)]
+                       [y (range 3)]]
+                      (+ x y))
+             [0, 1, 2, 1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6])))
