@@ -1,4 +1,4 @@
-;; curry -- Monads for Hy
+;; monaxhyd -- Monads for Hy
 ;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
@@ -9,7 +9,7 @@
 ;; of this license. You must not remove this notice, or any other,
 ;; from this software.
 
-(require curry.core)
+(require monaxhyd.core)
 
 (defmonad identity-m
   [[m-result (fn [r] r)]

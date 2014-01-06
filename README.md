@@ -1,7 +1,7 @@
-Hy on Curry
-===========
+Hy on Monaxhyd
+==============
 
-[![Build Status](https://travis-ci.org/algernon/curry.png?branch=master)](https://travis-ci.org/algernon/curry)
+[![Build Status](https://travis-ci.org/algernon/monaxhyd.png?branch=master)](https://travis-ci.org/algernon/monaxhyd)
 
 This library is a loose port of Clojure's [algo.monads][clj:monads] to
 [Hy][hylang]. It's a work heavily in progress at the moment, and it
@@ -14,8 +14,8 @@ Example
 -------
 
 ```clojure
-(require curry.core)
-(import [curry [monads]])
+(require monaxhyd.core)
+(import [monaxhyd [monads]])
 
 (domonad monads.identity-m [[a 1]
                             [b (inc a)]]
@@ -26,7 +26,7 @@ Example
 
 More examples can be found in the [test suite][t:generic].
 
- [t:generic]: https://github.com/algernon/curry/blob/master/tests/
+ [t:generic]: https://github.com/algernon/monaxhyd/blob/master/tests/
 
 License
 -------

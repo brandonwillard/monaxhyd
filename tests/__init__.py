@@ -1,4 +1,4 @@
 import hy
 
-from .test_curry import *
+from .test_monaxhyd import *
 from .test_monads import *

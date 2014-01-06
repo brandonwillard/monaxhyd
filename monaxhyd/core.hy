@@ -1,4 +1,4 @@
-;; curry -- Monads for Hy
+;; monaxhyd -- Monads for Hy
 ;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
@@ -10,7 +10,7 @@
 ;; from this software.
 
 (import [functools [reduce]])
-(import [curry._tools :as t/])
+(import [monaxhyd._tools :as t/])
 
 (defmacro monad [operations]
   `(let [[~'m-bind   'undefined]
@@ -38,4 +38,3 @@
 (defmacro domonad [name steps expr]
   (let [[mexpr (t/.monad-expr steps expr)]]
     `(with-monad ~name ~mexpr)))
-
