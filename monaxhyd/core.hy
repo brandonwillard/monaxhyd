@@ -13,15 +13,15 @@
 (import [monaxhyd._tools :as t/])
 
 (defmacro monad [operations]
-  `(let [[~'m-bind   'undefined]
-         [~'m-result 'undefined]
-         [~'m-zero   'undefined]
-         [~'m-plus   'undefined]
+  `(let [[m-bind   'undefined]
+         [m-result 'undefined]
+         [m-zero   'undefined]
+         [m-plus   'undefined]
          ~@operations]
-     {'m-result  ~'m-result
-      'm-bind    ~'m-bind
-      'm-zero    ~'m-zero
-      'm-plus    ~'m-plus}))
+     {'m-result  m-result
+      'm-bind    m-bind
+      'm-zero    m-zero
+      'm-plus    m-plus}))
 
 (defmacro defmonad [name operations]
   `(def ~name (monad ~operations)))
