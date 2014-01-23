@@ -26,14 +26,13 @@
 (defmacro defmonad [name operations]
   `(def ~name (monad ~operations)))
 
-(defmacro with-monad [monad &rest exprs]
-  (let [[g (gensym)]]
-    `(let [[~g        ~monad]
-           [~'m-bind    (get ~g 'm-bind)]
-           [~'m-result  (get ~g 'm-result)]
-           [~'m-zero    (get ~g 'm-zero)]
-           [~'m-plus    (get ~g 'm-plus)]]
-       ~@exprs)))
+(defmacro/g! with-monad [monad &rest exprs]
+  `(let [[~g!g      ~monad]
+         [m-bind    (get ~g!g 'm-bind)]
+         [m-result  (get ~g!g 'm-result)]
+         [m-zero    (get ~g!g 'm-zero)]
+         [m-plus    (get ~g!g 'm-plus)]]
+     ~@exprs))
 
 (defmacro domonad [name steps expr]
   (let [[mexpr (t/.monad-expr steps expr)]]
