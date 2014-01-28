@@ -23,7 +23,7 @@
                (unless (nil? mv)
                  (f mv)))]
    [m-plus   (fn [&rest mvs]
-               (first (drop-while (fn [x] (nil? x)) mvs)))]])
+               (first (drop-while nil? mvs)))]])
 
 (defmonad sequence-m
   [[m-result (fn [v] [v])]
