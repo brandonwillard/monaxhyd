@@ -1,1 +1,1 @@
-hy>=0.9.12
+-e git://github.com/hylang/hy.git@master#egg=hy

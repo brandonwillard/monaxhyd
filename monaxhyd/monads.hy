@@ -20,10 +20,10 @@
   [[m-zero   nil]
    [m-result (fn [v] v)]
    [m-bind   (fn [mv f]
-               (unless (is mv nil)
+               (unless (nil? mv)
                  (f mv)))]
    [m-plus   (fn [&rest mvs]
-               (first (drop-while (fn [x] (is x nil)) mvs)))]])
+               (first (drop-while (fn [x] (nil? x)) mvs)))]])
 
 (defmonad sequence-m
   [[m-result (fn [v] [v])]
