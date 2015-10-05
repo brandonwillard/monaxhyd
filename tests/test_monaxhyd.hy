@@ -1,5 +1,5 @@
 ;; monaxhyd -- Monads for Hy
-;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
+;; Copyright (c) 2014, 2015 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
 ;; The use and distribution terms for this software are covered by the
@@ -12,24 +12,24 @@
 (require monaxhyd.core)
 
 (defn test-monad []
-  (let [[test-monad (monad [[m-result (fn [r])]
-                            [m-bind (fn [mv f])]])]]
+  (let [test-monad (monad [m-result (fn [r])
+                           m-bind (fn [mv f])])]
     (assert (not (= (get test-monad 'm-result) 'undefined)))
     (assert (not (= (get test-monad 'm-bind) 'undefined)))
     (assert (= (get test-monad 'm-zero) 'undefined))
     (assert (= (get test-monad 'm-plus) 'undefined))))
 
 (defn test-defmonad []
-  (defmonad test-monad [[m-result (fn [r])]
-                        [m-bind (fn [mv f])]])
+  (defmonad test-monad [m-result (fn [r])
+                        m-bind (fn [mv f])])
   (assert (not (= (get test-monad 'm-result) 'undefined)))
   (assert (not (= (get test-monad 'm-bind) 'undefined)))
-  (assert (= (get test-monad 'm-zero) 'undefined))
-  (assert (= (get test-monad 'm-plus) 'undefined)))
+(assert (= (get test-monad 'm-zero) 'undefined))
+(assert (= (get test-monad 'm-plus) 'undefined)))
 
 (defn test-with-monad []
-  (let [[incr-monad (monad [[m-result (fn [r] (inc r))]
-                            [m-bind (fn [mv f] (f mv))]])]]
+  (let [incr-monad (monad [m-result (fn [r] (inc r))
+                           m-bind (fn [mv f] (f mv))])]
     (assert (= (with-monad incr-monad
                  (m-bind 1 (fn [a]
                              (m-bind (inc a)
@@ -38,8 +38,8 @@
                4))))
 
 (defn test-domonad []
-  (let [[incr-monad (monad [[m-result (fn [r] (inc r))]
-                            [m-bind (fn [mv f] (f mv))]])]]
+  (let [incr-monad (monad [m-result (fn [r] (inc r))
+                           m-bind (fn [mv f] (f mv))])]
     (assert (= (domonad incr-monad [[a 1]
                                     [b (inc a)]]
                         (+ a b))

@@ -1,5 +1,5 @@
 ;; monaxhyd -- Monads for Hy
-;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
+;; Copyright (c) 2014, 2015 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
 ;; The use and distribution terms for this software are covered by the
@@ -19,10 +19,10 @@
              3)))
 
 (defn test-monad-maybe []
-  (let [[call-state {}]
-        [ref (fn [n &rest r]
-               (setv (get call-state n) :called)
-               (if r (first r) n))]]
+  (let [call-state {}
+        ref (fn [n &rest r]
+              (setv (get call-state n) :called)
+              (if r (first r) n))]
     (setv call-state {})
     (assert (= (domonad monads.maybe-m [[a (ref 1)]
                                         [b (ref 2)]

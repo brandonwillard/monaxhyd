@@ -1,5 +1,5 @@
 ;; monaxhyd -- Monads for Hy
-;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
+;; Copyright (c) 2014, 2015 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
 ;; The use and distribution terms for this software are covered by the
@@ -13,10 +13,10 @@
 (import [monaxhyd._tools :as t/])
 
 (defmacro monad [operations]
-  `(let [[m-bind   'undefined]
-         [m-result 'undefined]
-         [m-zero   'undefined]
-         [m-plus   'undefined]
+  `(let [m-bind   'undefined
+         m-result 'undefined
+         m-zero   'undefined
+         m-plus   'undefined
          ~@operations]
      {'m-result  m-result
       'm-bind    m-bind
@@ -27,13 +27,13 @@
   `(def ~name (monad ~operations)))
 
 (defmacro/g! with-monad [monad &rest exprs]
-  `(let [[~g!g      ~monad]
-         [m-bind    (get ~g!g 'm-bind)]
-         [m-result  (get ~g!g 'm-result)]
-         [m-zero    (get ~g!g 'm-zero)]
-         [m-plus    (get ~g!g 'm-plus)]]
+  `(let [~g!g      ~monad
+         m-bind    (get ~g!g 'm-bind)
+         m-result  (get ~g!g 'm-result)
+         m-zero    (get ~g!g 'm-zero)
+         m-plus    (get ~g!g 'm-plus)]
      ~@exprs))
 
 (defmacro domonad [name steps expr]
-  (let [[mexpr (t/.monad-expr steps expr)]]
+  (let [mexpr (t/.monad-expr steps expr)]
     `(with-monad ~name ~mexpr)))

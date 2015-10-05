@@ -1,5 +1,5 @@
 ;; monaxhyd -- Monads for Hy
-;; Copyright (c) 2014 Gergely Nagy <algernon@madhouse-project.org>
+;; Copyright (c) 2014, 2015 Gergely Nagy <algernon@madhouse-project.org>
 ;; Heavily based on clojure.algo.monads by Konrad Hinsen and others.
 ;;
 ;; The use and distribution terms for this software are covered by the
@@ -12,22 +12,22 @@
 (require monaxhyd.core)
 
 (defmonad identity-m
-  [[m-result (fn [r] r)]
-   [m-bind   (fn [mv f]
-               (f mv))]])
+  [m-result (fn [r] r)
+   m-bind   (fn [mv f]
+              (f mv))])
 
 (defmonad maybe-m
-  [[m-zero   nil]
-   [m-result (fn [v] v)]
-   [m-bind   (fn [mv f]
-               (unless (nil? mv)
-                 (f mv)))]
-   [m-plus   (fn [&rest mvs]
-               (first (drop-while nil? mvs)))]])
+  [m-zero   nil
+   m-result (fn [v] v)
+   m-bind   (fn [mv f]
+              (unless (nil? mv)
+                (f mv)))
+   m-plus   (fn [&rest mvs]
+              (first (drop-while nil? mvs)))])
 
 (defmonad sequence-m
-  [[m-result (fn [v] [v])]
-   [m-bind   (fn [mv f]
-               (flatten (map f mv)))]
-   [m-zero   []]
-   [m-plus   (fn [&rest mvs] (flatten mvs))]])
+  [m-result (fn [v] [v])
+   m-bind   (fn [mv f]
+              (flatten (map f mv)))
+   m-zero   []
+   m-plus   (fn [&rest mvs] (flatten mvs))])
