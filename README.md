@@ -2,8 +2,8 @@ Hy on Monaxhyd
 ==============
 
 [![Build Status](https://travis-ci.org/algernon/monaxhyd.png?branch=master)](https://travis-ci.org/algernon/monaxhyd)
-[![Downloads](https://pypip.in/d/monaxhyd/badge.png)](https://crate.io/packages/monaxhyd)
-[![Version](https://pypip.in/v/monaxhyd/badge.png)](https://crate.io/packages/monaxhyd)
+[![Downloads](https://img.shields.io/pypi/dm/monaxhyd.svg)](https://crate.io/packages/monaxhyd)
+[![Version](https://img.shields.io/pypi/v/monaxhyd.svg)](https://crate.io/packages/monaxhyd)
 
 This library is a loose port of Clojure's [algo.monads][clj:monads] to
 [Hy][hylang]. It's a work heavily in progress at the moment, and it
