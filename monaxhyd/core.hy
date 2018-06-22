@@ -12,6 +12,8 @@
 (import [functools [reduce]])
 (import [monaxhyd._tools :as t/])
 
+(require [hy.contrib.walk [*]])
+
 (defmacro monad [operations]
   `(let [m-bind   'undefined
          m-result 'undefined
@@ -24,7 +26,7 @@
       'm-plus    m-plus}))
 
 (defmacro defmonad [name operations]
-  `(def ~name (monad ~operations)))
+  `(setv ~name (monad ~operations)))
 
 (defmacro/g! with-monad [monad &rest exprs]
   `(let [~g!g      ~monad
