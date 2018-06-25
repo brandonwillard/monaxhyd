@@ -9,8 +9,10 @@
 ;; of this license. You must not remove this notice, or any other,
 ;; from this software.
 
-(require monaxhyd.core)
 (import [monaxhyd [monads]])
+
+(require [monaxhyd.core [*]])
+(require [hy.contrib.walk [let]])
 
 (defn test-monad-identity []
   (assert (= (domonad monads.identity-m [[a 1]

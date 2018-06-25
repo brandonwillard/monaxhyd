@@ -9,7 +9,8 @@
 ;; of this license. You must not remove this notice, or any other,
 ;; from this software.
 
-(require monaxhyd.core)
+(require [monaxhyd.core [*]])
+(require [hy.contrib.walk [let]])
 
 (defn test-monad []
   (let [test-monad (monad [m-result (fn [r])

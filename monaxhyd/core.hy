@@ -12,7 +12,7 @@
 (import [functools [reduce]])
 (import [monaxhyd._tools :as t/])
 
-(require [hy.contrib.walk [*]])
+(require [hy.contrib.walk [let]])
 
 (defmacro monad [operations]
   `(let [m-bind   'undefined
