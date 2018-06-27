@@ -25,8 +25,8 @@
                         m-bind (fn [mv f])])
   (assert (not (= (get test-monad 'm-result) 'undefined)))
   (assert (not (= (get test-monad 'm-bind) 'undefined)))
-(assert (= (get test-monad 'm-zero) 'undefined))
-(assert (= (get test-monad 'm-plus) 'undefined)))
+  (assert (= (get test-monad 'm-zero) 'undefined))
+  (assert (= (get test-monad 'm-plus) 'undefined)))
 
 (defn test-with-monad []
   (let [incr-monad (monad [m-result (fn [r] (inc r))

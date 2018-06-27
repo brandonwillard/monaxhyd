@@ -18,12 +18,12 @@
   `(let [m-bind   'undefined
          m-result 'undefined
          m-zero   'undefined
-         m-plus   'undefined
-         ~@operations]
-     {'m-result  m-result
-      'm-bind    m-bind
-      'm-zero    m-zero
-      'm-plus    m-plus}))
+         m-plus   'undefined]
+        (let [~@operations]
+             {'m-result  m-result
+              'm-bind    m-bind
+              'm-zero    m-zero
+              'm-plus    m-plus})))
 
 (defmacro defmonad [name operations]
   `(setv ~name (monad ~operations)))
