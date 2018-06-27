@@ -28,10 +28,10 @@
     (setv call-state {})
     (assert (= (domonad monads.maybe-m [[a (ref 1)]
                                         [b (ref 2)]
-                                        [c (ref 3 nil)]
+                                        [c (ref 3 None)]
                                         [d (ref 4)]]
                         (+ a b c d))
-               nil))
+               None))
     (assert (= call-state {1 :called
                            2 :called
                            3 :called}))

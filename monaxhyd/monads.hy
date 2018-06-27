@@ -10,6 +10,7 @@
 ;; from this software.
 
 (require [monaxhyd.core [*]])
+(require [hy.contrib.walk [let]])
 
 (defmonad identity-m
   [m-result (fn [r] r)
@@ -17,13 +18,13 @@
               (f mv))])
 
 (defmonad maybe-m
-  [m-zero   nil
+  [m-zero   None
    m-result (fn [v] v)
    m-bind   (fn [mv f]
-              (unless (nil? mv)
+              (unless (none? mv)
                 (f mv)))
    m-plus   (fn [&rest mvs]
-              (first (drop-while nil? mvs)))])
+              (first (drop-while none? mvs)))])
 
 (defmonad sequence-m
   [m-result (fn [v] [v])
