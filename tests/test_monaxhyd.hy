@@ -9,7 +9,8 @@
 ;; of this license. You must not remove this notice, or any other,
 ;; from this software.
 
-(require monaxhyd.core)
+(require [monaxhyd.core [*]])
+(require [hy.contrib.walk [let]])
 
 (defn test-monad []
   (let [test-monad (monad [m-result (fn [r])
@@ -24,8 +25,8 @@
                         m-bind (fn [mv f])])
   (assert (not (= (get test-monad 'm-result) 'undefined)))
   (assert (not (= (get test-monad 'm-bind) 'undefined)))
-(assert (= (get test-monad 'm-zero) 'undefined))
-(assert (= (get test-monad 'm-plus) 'undefined)))
+  (assert (= (get test-monad 'm-zero) 'undefined))
+  (assert (= (get test-monad 'm-plus) 'undefined)))
 
 (defn test-with-monad []
   (let [incr-monad (monad [m-result (fn [r] (inc r))

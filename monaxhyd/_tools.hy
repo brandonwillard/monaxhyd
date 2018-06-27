@@ -10,6 +10,7 @@
 ;; from this software.
 
 (import [functools [reduce]])
+(require [hy.contrib.walk [let]])
 
 (defn reverse [l]
   (let [nl (list l)]
@@ -19,7 +20,7 @@
 (defn ensure-items [n steps]
   (let [res (list steps)]
     (while (< (len res) n)
-      (setv res (+ res [nil])))
+      (setv res (+ res [None])))
     res))
 
 (defn each3-steps [steps]
