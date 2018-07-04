@@ -10,7 +10,6 @@
 ;; from this software.
 
 (require [monaxhyd.core [*]])
-(require [hy.contrib.walk [let]])
 
 (defmonad identity-m
   [m-result (fn [r] r)
