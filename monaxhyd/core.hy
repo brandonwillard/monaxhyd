@@ -14,27 +14,31 @@
 
 (require [hy.contrib.walk [let]])
 
-(defmacro monad [operations]
-  `(let [m-bind   'undefined
-         m-result 'undefined
-         m-zero   'undefined
-         m-plus   'undefined]
-        (let [~@operations]
-             {'m-result  m-result
-              'm-bind    m-bind
-              'm-zero    m-zero
-              'm-plus    m-plus})))
+(defmacro/g! monad [operations]
+  `(do
+     (require [hy.contrib.walk [let :as ~g!let]])
+     (~g!let [m-bind   'undefined
+              m-result 'undefined
+              m-zero   'undefined
+              m-plus   'undefined]
+      (~g!let [~@operations]
+               {'m-result  m-result
+                'm-bind    m-bind
+                'm-zero    m-zero
+                'm-plus    m-plus}))))
 
 (defmacro defmonad [name operations]
   `(setv ~name (monad ~operations)))
 
 (defmacro/g! with-monad [monad &rest exprs]
-  `(let [~g!g      ~monad
-         m-bind    (get ~g!g 'm-bind)
-         m-result  (get ~g!g 'm-result)
-         m-zero    (get ~g!g 'm-zero)
-         m-plus    (get ~g!g 'm-plus)]
-     ~@exprs))
+  `(do
+     (require [hy.contrib.walk [let :as ~g!let]])
+     (~g!let [~g!g      ~monad
+              m-bind    (get ~g!g 'm-bind)
+              m-result  (get ~g!g 'm-result)
+              m-zero    (get ~g!g 'm-zero)
+              m-plus    (get ~g!g 'm-plus)]
+      ~@exprs)))
 
 (defmacro domonad [name steps expr]
   (let [mexpr (t/.monad-expr steps expr)]
