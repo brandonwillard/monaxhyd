@@ -20,6 +20,8 @@ setup(
     package_data={
         'monaxhyd': ['*.hy'],
     },
+    test_suite='nose.collector',
+    tests_require=['nose'],
     author="Gergely Nagy",
     author_email="algernon@madhouse-project.org",
     long_description="""monaxhyd is a loose port of Clojure's algo.monads library to Hy """,
