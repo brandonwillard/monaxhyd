@@ -15,7 +15,7 @@ from setuptools import find_packages, setup
 setup(
     name="monaxhyd",
     version="0.2.1",
-    install_requires = ['hy>=0.10.0'],
+    install_requires=['hy>=0.15.0'],
     packages=find_packages(exclude=['tests']),
     package_data={
         'monaxhyd': ['*.hy'],
