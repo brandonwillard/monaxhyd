@@ -10,25 +10,14 @@
 ;; from this software.
 
 (import [functools [reduce]])
+(import [itertools [tee zip-longest]])
+
 (require [hy.contrib.walk [let]])
 
-(defn reverse [l]
-  (let [nl (list l)]
-    (.reverse nl)
-    nl))
-
-(defn ensure-items [n steps]
-  (let [res (list steps)]
-    (while (< (len res) n)
-      (setv res (+ res [None])))
-    res))
 
 (defn each3-steps [steps]
-  (let [n (len steps)]
-    (map (fn [&rest i] i)
-         (ensure-items n steps)
-         (ensure-items n (rest steps))
-         (ensure-items n (rest (rest steps))))))
+  (setv [a b c] (tee steps 3))
+  (zip-longest a (rest b) (rest (rest c))))
 
 (defn add-monad-step [mexpr steps]
   (let [ff (first steps)
@@ -37,7 +26,7 @@
     `(m-bind ~expr (fn [~bform] ~mexpr))))
 
 (defn monad-expr [steps expr]
-  (let [rsteps (-> steps reverse each3-steps)]
+  (let [rsteps (-> steps reversed each3-steps)]
     (reduce add-monad-step
             rsteps
             `(m-result ~expr))))
